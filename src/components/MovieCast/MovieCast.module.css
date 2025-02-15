@@ -1,0 +1,19 @@
+.castList {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    justify-content: center;
+}
+
+.actorItem {
+    text-align: center;
+}
+
+.actor {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    border-radius: 5px;
+}
