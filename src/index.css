@@ -21,6 +21,7 @@ h5,
 h6,
 p {
   margin: 0;
+  margin-top: 75px;
 }
 
 ul,

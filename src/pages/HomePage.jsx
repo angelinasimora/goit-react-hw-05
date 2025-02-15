@@ -13,7 +13,7 @@ function HomePage() {
 
     return (
         <div>
-            <h1 className="styles.title">Trending Movies</h1>
+            <h1 >Trending Movies</h1>
             <MovieList movies={movies} isLoading={isLoading} />
         </div>
     );
