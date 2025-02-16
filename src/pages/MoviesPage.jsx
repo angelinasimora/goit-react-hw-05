@@ -3,7 +3,6 @@ import { searchMovies } from "../services/tmdbApi";
 import MovieList from "../components/MovieList/MovieList";
 import { useSearchParams } from "react-router-dom";
 
-
 function MoviesPage() {
     const [searchParams, setSearchParams] = useSearchParams();
     const [query, setQuery] = useState(searchParams.get("q") || "");
@@ -11,16 +10,15 @@ function MoviesPage() {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        updateSearchParams("q", query);
-        if (!query) return;
+        const searchQuery = searchParams.get("q");
+        if (!searchQuery) return;
 
         let isCancelled = false;
         setIsLoading(true);
 
-        searchMovies(query)
+        searchMovies(searchQuery)
             .then((data) => {
                 if (!isCancelled) setMovies(data);
-
             })
             .finally(() => {
                 if (!isCancelled) setIsLoading(false);
@@ -29,23 +27,36 @@ function MoviesPage() {
         return () => {
             isCancelled = true;
         };
-    }, [query]);
+    }, [searchParams]);
 
     const handleSearch = (e) => {
         e.preventDefault();
+        updateSearchParams("q", query);
     };
 
     const updateSearchParams = (key, value) => {
         const updatedParams = new URLSearchParams(searchParams);
-        updatedParams.set(key, value);
+        if (value) {
+            updatedParams.set(key, value);
+        } else {
+            updatedParams.delete(key);
+        }
         setSearchParams(updatedParams);
     };
 
     return (
         <>
-            <form onSubmit={handleSearch}>
-                <input value={query} onChange={(e) => setQuery(e.target.value)} />
-                <button type="submit">Search</button>
+            <form onSubmit={handleSearch} style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
+                <input 
+                    type="text" 
+                    value={query} 
+                    onChange={(e) => setQuery(e.target.value)} 
+                    placeholder="Enter movie title..."
+                    style={{ padding: "8px", fontSize: "16px", width: "250px" }}
+                />
+                <button type="submit" style={{ padding: "8px 16px", fontSize: "16px", cursor: "pointer" }}>
+                    Search
+                </button>
             </form>
             <MovieList movies={movies} isLoading={isLoading} />
         </>
