@@ -45,7 +45,7 @@ function MoviesPage() {
     };
 
     return (
-        <>
+        <div className="form">
             <form onSubmit={handleSearch} style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
                 <input 
                     type="text" 
@@ -59,7 +59,7 @@ function MoviesPage() {
                 </button>
             </form>
             <MovieList movies={movies} isLoading={isLoading} />
-        </>
+        </div>
     );
 }
 
