@@ -139,6 +139,11 @@ box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);   }
     display: inline-block;
     color: #fff;
 }
+.year {
+    font-weight: normal;
+    font-size: 20px;
+    color: #ccc;
+}
 .trailerWrapper {
     margin-top: 30px;
     text-align: center;

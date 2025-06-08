@@ -48,3 +48,10 @@
     margin: 0;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
 }
+
+.year {
+    font-size: 13px;
+    color: #999;
+    margin-top: 2px;
+    display: block;
+}

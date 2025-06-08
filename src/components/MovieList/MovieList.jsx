@@ -11,22 +11,42 @@ function MovieList({ movies, isLoading }) {
     <>
       {movies.length > 0 ? (
         <ul className={styles.listMovies}>
-          {movies.map(({ id, title, poster_path }) => (
-            <li key={id}>
-              <Link
-                className={styles.link}
-                to={`/movies/${id}`}
-                state={{ from: location }}
-              >
-                <img
-                  src={IMAGE_BASE_URL + poster_path}
-                  alt={title}
-                  width="100"
-                />
-                <p>{title}</p>
-              </Link>
-            </li>
-          ))}
+          {movies.map(
+            ({
+              id,
+              title,
+              name,
+              release_date,
+              first_air_date,
+              poster_path,
+            }) => {
+              const year =
+                release_date?.slice(0, 4) ||
+                first_air_date?.slice(0, 4) ||
+                "N/A";
+              return (
+                <li key={id}>
+                  <Link
+                    className={styles.link}
+                    to={`/movies/${id}`}
+                    state={{ from: location }}
+                  >
+                    <img
+                      src={
+                        poster_path
+                          ? IMAGE_BASE_URL + poster_path
+                          : "/no-image.jpg"
+                      }
+                      alt={title || name}
+                      width="100"
+                    />
+                    <p>{title || name}</p>
+                    <span className={styles.year}>({year})</span>
+                  </Link>
+                </li>
+              );
+            }
+          )}
         </ul>
       ) : (
         <p className={styles.noMovies}>No movies</p>

@@ -52,7 +52,16 @@ function MovieDetailsPage() {
               src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               alt={movie.title}
             />
-            <h1 className={styles.title}>{movie.title}</h1>
+            <h1 className={styles.title}>
+              {movie.title}
+              {movie.release_date && (
+                <span className={styles.year}>
+                  {" "}
+                  ({movie.release_date.slice(0, 4)})
+                </span>
+              )}
+            </h1>
+
             <p>Score: {Math.round(movie.vote_average * 10)}%</p>
             <p className={styles.descriptionMovie}>{movie.overview}</p>
             <ul className={styles.genresList}>
@@ -91,6 +100,7 @@ function MovieDetailsPage() {
             {activeSection === "cast" && <Cast movieId={movieId} />}
             {activeSection === "reviews" && <Reviews movieId={movieId} />}
           </div>
+
           {!activeSection && (
             <>
               {trailer && (
