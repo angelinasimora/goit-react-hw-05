@@ -1,0 +1,50 @@
+.card {
+    list-style: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.card:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 255, 255, 0.3);
+}
+
+.cardLink {
+    text-decoration: none;
+    display: block;
+    height: 100%;
+    color: inherit;
+}
+
+.poster {
+    height: 270px;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s ease;
+}
+
+.card:hover .poster {
+    transform: scale(1.05);
+}
+
+.titleWrapper {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 12px;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+.card:hover .titleWrapper {
+    background: rgba(0, 0, 0, 0.85);
+}
+
+.title {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}

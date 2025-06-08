@@ -1,19 +1,41 @@
 .castList {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+    padding: 20px;
     list-style: none;
-    padding: 0;
-    justify-content: center;
+    margin: 0;
 }
 
-.actorItem {
+.castItem {
+    background-color: #1c1c1c;
+    border-radius: 12px;
+    padding: 10px;
     text-align: center;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.castItem:hover {
+    transform: translateY(-5px);
+    background-color: #292929;
 }
 
 .actor {
     width: 100%;
-    max-width: 150px;
-    height: auto;
-    border-radius: 5px;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-size: 1rem;
+    margin: 8px 0 4px;
+}
+
+p {
+    font-size: 0.9rem;
+    color: #ccc;
 }

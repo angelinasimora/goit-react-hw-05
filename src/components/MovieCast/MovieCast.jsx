@@ -10,9 +10,20 @@ function MovieCast() {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        setIsLoading(true);
-        fetchMovieCast(movieId).then(setCast).then(() => { setIsLoading(false) });
+        const fetchData = async () => {
+            try {
+                setIsLoading(true);
+                const data = await fetchMovieCast(movieId);
+                setCast(data);
+            } catch (error) {
+                console.error("Failed to fetch cast", error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchData();
     }, [movieId]);
+
     if (isLoading) {
         return <p>Loading...</p>;
     }
@@ -21,9 +32,9 @@ function MovieCast() {
         <div>
             <h2>Actors</h2>
             {cast.length > 0 ? (
-                <ul className="castList" >
+                <ul className={styles.castList}>
                     {cast.map(actor => (
-                        <li key={actor.id}>
+                        <li key={actor.id} className={styles.castItem}>
                             <img className={styles.actor} src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} />
                             <h3>{actor.name}</h3>
                             <p>Character: {actor.character}</p>

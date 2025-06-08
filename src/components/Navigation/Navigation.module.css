@@ -1,30 +1,88 @@
-nav {
-    display: flex;
-    gap: 20px;
+.nav {
     position: fixed;
     top: 0;
-    left: 0;
     width: 100%;
-    background-color: white;
-    padding: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background-color: #0d0d0d;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
     z-index: 1000;
 }
 
+.navLinks {
+    display: flex;
+    gap: 30px;
+}
+
 .navLink {
-    border-radius: 15%;
-    padding: 6px 12px;
-    background-color: rgb(21, 173, 21);
+    position: relative;
+    color: #ffffffcc;
+    font-size: 18px;
+    font-weight: 500;
     text-decoration: none;
-    color: black;
-    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.navLink::before,
+.navLink::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: #00fff7;
+    top: 100%;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.navLink:hover::before {
+    transform: scaleX(1);
+}
+
+.navLink.active {
+    color: #00fff7;
+    text-shadow: 0 0 5px #00fff7, 0 0 10px #00fff7;
 }
 
 .navLink:hover {
-    background-color: rgb(7, 143, 129);
+    color: #00fff7;
 }
 
-/* body {
-    padding-top: 50px 20px;
+.backButtonWrapper {
+    position: relative;
+}
 
-} */
+/* Optional: glitch hover effect */
+.navLink:hover {
+    animation: glitch 0.5s;
+}
+
+@keyframes glitch {
+    0% {
+        text-shadow: 2px 2px red, -2px -2px cyan;
+    }
+
+    25% {
+        text-shadow: -2px 2px red, 2px -2px cyan;
+    }
+
+    50% {
+        text-shadow: 2px -2px red, -2px 2px cyan;
+    }
+
+    75% {
+        text-shadow: -2px -2px red, 2px 2px cyan;
+    }
+
+    100% {
+        text-shadow: none;
+    }
+}
